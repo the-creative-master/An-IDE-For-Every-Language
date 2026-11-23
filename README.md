@@ -89,3 +89,7 @@ public/python-ide.html       Generated downloadable example IDE
 Contributions, language suggestions, and implementation ideas are welcome. The project aims to explore small, approachable IDE experiences that are easy to run offline in the browser.
 
 Have an idea for another language or a suggested interaction model? Open an issue or submit a pull request.
+
+### Deploying to GitHub Pages
+
+The Pages workflow builds the site and generates the downloadable IDE before deploying `dist/`. In the repository's **Settings → Pages**, set the build and deployment source to **GitHub Actions**. Deploying the repository source directly will not include the generated IDE. Paths in the build are relative so it also works under a project subdirectory.
