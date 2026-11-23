@@ -55,7 +55,7 @@ The `postinstall`, `predev`, and `prebuild` scripts run `scripts/copy-runtime.js
 
 1. Reads the Pyodide runtime from `node_modules/pyodide/`
 2. Embeds the runtime, WASM module, and Python standard library into `standalone/template.html`
-3. Writes the finished file to `public/python-ide.html`
+3. Writes the finished file to `python-ide.html` for the GitHub Pages branch deployment and `public/python-ide.html` for Vite builds. The root copy is intentionally committed so the download works on GitHub Pages without a build step.
 
 You can regenerate it directly with:
 
@@ -63,7 +63,7 @@ You can regenerate it directly with:
 npm run postinstall
 ```
 
-Open `public/python-ide.html` directly in a browser to try the example offline.
+Open `python-ide.html` directly in a browser to try the example offline. Commit the regenerated root file whenever the template or runtime changes.
 
 ## Testing
 
@@ -81,7 +81,8 @@ src/                         Landing-page assets and source
 standalone/template.html     Standalone example IDE template
 scripts/copy-runtime.js      Embeds Pyodide into the standalone HTML
 scripts/test-standalone.cjs  Offline standalone IDE test
-public/python-ide.html       Generated downloadable example IDE
+python-ide.html              Generated downloadable IDE, published from the repository root
+public/python-ide.html       Generated copy used by Vite
 ```
 
 ## Contributing
@@ -92,4 +93,4 @@ Have an idea for another language or a suggested interaction model? Open an issu
 
 ### Deploying to GitHub Pages
 
-The Pages workflow builds the site and generates the downloadable IDE before deploying `dist/`. In the repository's **Settings → Pages**, set the build and deployment source to **GitHub Actions**. Deploying the repository source directly will not include the generated IDE. Paths in the build are relative so it also works under a project subdirectory.
+GitHub Pages is configured to publish the repository root on `main`. The generated `python-ide.html` is committed so it is available to download there. Do not switch the Pages source to GitHub Actions without configuring a deployment workflow. The included workflow checks that the committed file matches its template and runtime.
