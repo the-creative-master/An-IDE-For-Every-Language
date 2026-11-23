@@ -1,0 +1,21 @@
+{
+  "name": "every-language-ide",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "postinstall": "node scripts/copy-runtime.js",
+    "predev": "node scripts/copy-runtime.js",
+    "prebuild": "node scripts/copy-runtime.js",
+    "test": "node scripts/test-standalone.cjs"
+  },
+  "dependencies": {
+    "lucide": "^0.468.0",
+    "pyodide": "0.27.7"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}
